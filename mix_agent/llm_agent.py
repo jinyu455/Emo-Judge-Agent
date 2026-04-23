@@ -7,17 +7,7 @@ from typing import Any, Protocol
 from .schemas import MixInput, MixResult
 
 
-MIX_EMOTION_LABELS = {
-    "开心",
-    "悲伤",
-    "愤怒",
-    "焦虑",
-    "厌烦",
-    "中性",
-    "疲惫",
-    "失落",
-    "无奈",
-}
+MIX_EMOTION_LABELS = {"开心", "悲伤", "愤怒", "焦虑", "厌烦", "中性","疲惫","失落","无奈",}
 
 SYSTEM_PROMPT = """你是情绪识别系统中的 Mix Agent。
 

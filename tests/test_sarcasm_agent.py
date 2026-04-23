@@ -96,7 +96,7 @@ class SarcasmAgentTestCase(unittest.TestCase):
             {
                 "is_sarcasm": True,
                 "surface_emotion": "开心",
-                "true_emotion": "疲惫",
+                "true_emotion": "疲倦",
                 "revised_intensity": 70,
                 "confidence": 0.8,
                 "reason": "标签不在范围内。",

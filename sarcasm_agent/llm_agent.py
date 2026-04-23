@@ -7,7 +7,7 @@ from typing import Any, Protocol
 from .schemas import SarcasmInput, SarcasmResult
 
 
-EMOTION_LABELS = {"开心", "悲伤", "愤怒", "焦虑", "厌烦", "中性"}
+EMOTION_LABELS = {"开心", "悲伤", "愤怒", "焦虑", "厌烦", "中性","疲惫","失落","无奈",}
 
 SYSTEM_PROMPT = """你是情绪识别系统中的 Sarcasm Agent。
 
@@ -22,13 +22,17 @@ SYSTEM_PROMPT = """你是情绪识别系统中的 Sarcasm Agent。
 5. 给出置信度 confidence
 6. 给出简短解释 reason
 
-主情绪标签只能从以下 6 类中选择：
+主情绪标签只能从以下 9 类中选择：
 - 开心
 - 悲伤
 - 愤怒
 - 焦虑
 - 厌烦
 - 中性
+- 疲惫
+- 失落
+- 无奈
+
 
 反讽判断重点：
 - 正向词 + 负向事件
