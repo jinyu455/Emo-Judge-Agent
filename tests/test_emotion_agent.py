@@ -1,6 +1,11 @@
 from __future__ import annotations
 
 import unittest
+import sys
+from pathlib import Path 
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(PROJECT_ROOT))
 
 from emotion_agent import EmotionAgent
 from emotion_agent.schemas import EmotionInput
@@ -42,7 +47,7 @@ class EmotionAgentTestCase(unittest.TestCase):
         )
         agent = EmotionAgent(client=client)
 
-        result = agent.analyze(self._payload("太好了，周末又能继续改需求了。"))
+        result = agent.emotionRe(self._payload("太好了，周末又能继续改需求了。"))
 
         self.assertEqual(result.emotion, "开心")
         self.assertEqual(result.intensity, 62)
@@ -66,7 +71,7 @@ class EmotionAgentTestCase(unittest.TestCase):
         )
         agent = EmotionAgent(client=client)
 
-        result = agent.analyze_dict(self._payload("我现在特别焦虑"))
+        result = agent.emotionRe_dict(self._payload("我现在特别焦虑"))
 
         self.assertEqual(result["emotion"], "焦虑")
         self.assertEqual(result["degree_words"], ["特别"])
@@ -112,7 +117,7 @@ class EmotionAgentTestCase(unittest.TestCase):
         agent = EmotionAgent(client=client)
 
         with self.assertRaises(ValueError):
-            agent.analyze(self._payload("我好累"))
+            agent.emotionRe(self._payload("我好累"))
 
     def test_invalid_score_range_raises(self) -> None:
         client = FakeEmotionLLMClient(
@@ -131,7 +136,7 @@ class EmotionAgentTestCase(unittest.TestCase):
         agent = EmotionAgent(client=client)
 
         with self.assertRaises(ValueError):
-            agent.analyze(self._payload("烦"))
+            agent.emotionRe(self._payload("烦"))
 
 
 if __name__ == "__main__":
