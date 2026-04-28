@@ -1,6 +1,6 @@
 ﻿# EmoAgent Router Agent
 
-当前版本的 `EmoAgent` 通过调用大模型进行判断。
+当前版本的 `EmoAgent` 通过调用大模型deepseek-chat进行判断。(若需调用其他大模型，请修改各个agent的base_url及model或者设置环境变量)
 
 ## 情绪分析服务启动
 
@@ -17,9 +17,7 @@
 服务启动时会优先读取项目根目录 `.env` 中的配置，也支持直接读取系统环境变量。至少需要准备：
 
 ```env
-API_KEY=你的大模型服务密钥
-LLM_BASE_URL=https://api.deepseek.com/v1/chat/completions
-LLM_MODEL=deepseek-chat
+API_KEY=你的deepseek服务密钥
 ```
 
 说明：
@@ -33,7 +31,7 @@ LLM_MODEL=deepseek-chat
 仓库中没有提交 `.venv`。首次拉取项目后，请在项目根目录创建你自己的虚拟环境：
 
 ```powershell
-cd d:\PracticalTraining\Agenttest\EmoAgent
+cd service
 python -m venv .venv
 ```
 
@@ -60,7 +58,6 @@ pip install -r requirements.txt
 激活虚拟环境后执行：
 
 ```powershell
-cd service
 uvicorn app:app --reload
 ```
 
@@ -68,6 +65,12 @@ uvicorn app:app --reload
 
 ```text
 http://127.0.0.1:8000
+```
+
+若要指定端口，则执行:
+
+```powershell
+uvicorn app:app --reload --port "指定端口”
 ```
 
 ### 6. 健康检查
